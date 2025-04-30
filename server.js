@@ -1,17 +1,20 @@
+
+
 // backend/server.js
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2');
+require('dotenv').config();  // Carregar variáveis do .env
 const app = express();
 const PORT = 3000;
 
-// Configurações do MySQL
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'projetodb'
-});
+// Detectar se estamos no ambiente de produção ou desenvolvimento
+const isProd = process.env.NODE_ENV === 'production';
+
+// Configuração do MySQL usando a variável de ambiente
+const db = mysql.createConnection(isProd ? process.env.DATABASE_URL : process.env.DEV_DATABASE_URL);
+
+
 
 // Conectar ao banco
 db.connect(err => {
