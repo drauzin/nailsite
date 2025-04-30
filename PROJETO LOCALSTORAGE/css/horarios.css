@@ -1,0 +1,174 @@
+/* Reset básico */
+body, h1, h2, h3, p, ul, li, button, input {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo geral */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* Títulos */
+h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 50px;
+    padding-top: 100px;
+}
+
+/* Container principal */
+.container {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Estilo dos botões grandes (tipo Linktree) */
+button, .link-button {
+    width: 100%;
+    padding: 18px 20px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    margin-top: 10px;
+    border-radius: 25px;
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    transition: background 0.3s, color 0.3s;
+}
+
+button:hover, .link-button:hover {
+    background-color: #333333;
+    cursor: pointer;
+}
+
+/* Inputs bonitos */
+input[type="date"],
+input[type="time"],
+input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    margin-top: 10px;
+    border: 1px solid #000;
+    border-radius: 20px;
+    font-size: 40px;
+    background-color: #fff;
+    color: #000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Seções como blocos */
+section, form, .servico, ul {
+    background-color: #f9f9f9;
+    border: 1px solid #000;
+    border-radius: 20px;
+    padding: 25px;
+    width: 80%;
+}
+
+/* Lista sem bolinhas */
+ul {
+    list-style: none;
+}
+
+/* Estilo dos itens de lista */
+li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    font-size: 25px;
+}
+
+/* Botões de horários */
+.botoes-horarios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Botão individual de horário */
+.horario {
+    flex: 1 1 40%;
+    min-width: 120px;
+    padding: 15px;
+    font-size: 25px;
+    border-radius: 20px;
+    background-color: #fff;
+    border: 2px solid #000;
+    color: #000;
+}
+
+.horario:hover, .horario.selecionado {
+    background-color: #000;
+    color: #fff;
+}
+
+/* Botão de confirmar agendamento */
+.confirmar-button {
+    margin-top: 20px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 15px;
+    font-size: 18px;
+}
+
+.confirmar-button:hover {
+    background-color: #333;
+}
+
+/* Link tipo botão */
+a {
+    text-decoration: none;
+    display: block;
+}
+
+.link-button {
+    margin-top: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    body {
+        padding: 202px 10px;
+    }
+    button, input, .horario {
+        font-size: 126px;
+    }
+}
+
+
+/* Estilo para centralizar o botão de voltar */
+p {
+    text-align: center;
+    margin-top: 30px;
+}
+
+p a {
+    display: inline-block;
+    padding: 25px 35px;
+    background-color: #333; /* Cor do botão */
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 30px;
+    transition: background-color 0.3s ease;
+}
+
+p a:hover {
+    background-color: #555; /* Cor ao passar o mouse */
+}

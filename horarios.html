@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/horarios.css">
+    <title>Gerenciar Horários</title>
+</head>
+<body>
+    <h1>Adicionar Horários Disponíveis</h1>
+
+    <form id="form-horario">
+        <input type="date" id="data" required>
+        <input type="time" id="hora" required>
+        <button type="submit">Adicionar Horário</button>
+    </form>
+
+    <h2>Horários Cadastrados</h2>
+    <ul id="lista-horarios"></ul>
+
+    <p><a href="painel.html">Voltar ao painel</a></p>
+
+    <script>
+        const API_URL = 'http://localhost:3000'; // Altere se seu servidor rodar em outra URL
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("form-horario");
+            const lista = document.getElementById("lista-horarios");
+
+            async function carregarHorarios() {
+                try {
+                    const response = await fetch(`${API_URL}/horarios`);
+                    const horarios = await response.json();
+                    lista.innerHTML = "";
+
+                    horarios.forEach((h) => {
+                        const li = document.createElement("li");
+                        li.innerHTML = `
+                            ${h.data} às ${h.hora}
+                            <button onclick="removerHorario(${h.id})">Remover</button>
+                        `;
+                        lista.appendChild(li);
+                    });
+                } catch (error) {
+                    console.error("Erro ao carregar horários:", error);
+                }
+            }
+
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const data = document.getElementById("data").value;
+                const hora = document.getElementById("hora").value;
+
+                if (data && hora) {
+                    try {
+                        await fetch(`${API_URL}/horarios`, {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ data, hora })
+                        });
+                        form.reset();
+                        carregarHorarios();
+                    } catch (error) {
+                        console.error("Erro ao adicionar horário:", error);
+                    }
+                }
+            });
+
+            window.removerHorario = async (id) => {
+                if (confirm("Tem certeza que deseja remover este horário?")) {
+                    try {
+                        await fetch(`${API_URL}/horarios/${id}`, {
+                            method: "DELETE"
+                        });
+                        carregarHorarios();
+                    } catch (error) {
+                        console.error("Erro ao remover horário:", error);
+                    }
+                }
+            };
+
+            carregarHorarios();
+        });
+    </script>
+    
+</body>
+</html>

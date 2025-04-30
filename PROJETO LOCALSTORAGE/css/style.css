@@ -1,0 +1,114 @@
+/* css/style.css */
+
+/* Estilos Gerais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container de Login */
+.login-container {
+    width: 300px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+.login-container h1 {
+    text-align: center;
+    color: #333;
+}
+
+/* Formulário */
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form label {
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.login-form input {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* Estilo específico para CPF e Senha */
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    border: 1px solid #ccc;
+    transition: border 0.3s;
+}
+
+.login-form input[type="text"]:focus,
+.login-form input[type="password"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Botões estilo Linktree */
+.button-link {
+    background-color: transparent;
+    color: #007bff;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 5px 0;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-link:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Estilos para o Menu Hamburguer */
+.menu-hamburguer {
+    position: relative;
+    display: inline-block;
+}
+
+#menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+#menu-icon {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Exibe o menu quando ativo */
+.menu-hamburguer:hover #menu {
+    display: block;
+}
+
+/* Estilos para a foto do cliente */
+.foto-cliente {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.foto-cliente img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Clientes</title>
+    <link rel="stylesheet" href="css/listaclientes.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Lista de Clientes</h1>
+
+    <table id="clientesTable">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Celular</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Os clientes serão adicionados aqui dinamicamente -->
+        </tbody>
+    </table>
+
+    <!-- Modal para exibir os dados do cliente -->
+    <div id="modalCliente" class="modal">
+        <div class="modal-content">
+            <span id="fecharModal" class="close">&times;</span>
+            <h2>Perfil do Cliente</h2>
+            <div id="perfilCliente">
+                <!-- Dados do cliente serão exibidos aqui -->
+            </div>
+            <button id="salvarAlteracoes" class="save-celular">Salvar Alterações</button>
+        </div>
+    </div>
+
+    <p><a href="painel.html">Voltar ao painel</a></p>
+</div>
+
+<!-- Modal de Confirmação -->
+<div id="modalConfirmacao" style="display: none;" class="modal-overlay">
+    <div class="modal-content">
+      <h2>Salvar alterações?</h2>
+      <div class="modal-buttons">
+        <button id="confirmarAlteracoes">Sim</button>
+        <button id="cancelarAlteracoes">Não</button>
+      </div>
+    </div>
+  </div>
+  
+
+<script src="js/listaclientes.js"></script>
+</body>
+</html>

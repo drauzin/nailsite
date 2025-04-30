@@ -1,0 +1,108 @@
+/* Estilo Geral */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+}
+
+/* Container Principal */
+#lista-agendamentos {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo dos itens de cliente (como links) */
+.cliente {
+    display: block;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.cliente:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.02);
+}
+
+/* Estilo para as listas de agendamentos */
+.agendamentos-container {
+    margin-top: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Botão de cancelar e editar */
+.btn {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-top: 10px;
+    font-size: 14px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para as mensagens de 'nenhum agendamento' */
+.nenhum-agendamento {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+}
+
+/* Estilo para centralizar o botão de voltar */
+p {
+    text-align: center;
+    margin-top: 30px;
+}
+
+p a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333; /* Cor do botão */
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+p a:hover {
+    background-color: #555; /* Cor ao passar o mouse */
+}

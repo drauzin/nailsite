@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário</title>
+    <link rel="stylesheet" href="/css/cadastro.css">
+</head>
+<body>
+
+    <h1 style="text-align: center; margin-top: 20px;">Cadastro</h1>
+
+    <div id="cadastroContainer">
+        <!-- Formulário de Cadastro -->
+        <form id="cadastroForm">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+            <label for="cpf">CPF:</label>
+            <input type="text" id="cpf" name="cpf" required>
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" required>
+            <button type="submit">Cadastrar</button>
+        </form>
+        
+        <p>Já tem uma conta? <a href="index.html">Faça login</a></p>
+    </div>
+
+    <script>
+        // Lógica de Cadastro
+        document.querySelector('#cadastroForm').addEventListener('submit', async function(e) {
+  e.preventDefault(); // Impede o envio do formulário
+
+  const nome = document.querySelector('#nome').value;
+  const cpf = document.querySelector('#cpf').value;
+  const senha = document.querySelector('#senha').value;
+
+  const data = {
+    nome: nome,
+    cpf: cpf,
+    senha: senha
+  };
+
+  try {
+    // Envia os dados para o servidor para criar o usuário
+    const response = await fetch('http://localhost:3000/usuario/cadastrar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+
+    if (response.ok) {
+      alert('Usuário cadastrado com sucesso!');
+      window.location.href = 'index.html'; // Redireciona para o login
+    } else {
+      alert('Erro ao cadastrar usuário');
+    }
+  } catch (error) {
+    alert('Erro de conexão com o servidor');
+    console.error('Erro:', error);
+  }
+});
+
+    </script>
+
+</body>
+</html>

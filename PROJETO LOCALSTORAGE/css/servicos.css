@@ -1,0 +1,172 @@
+/* Estilos Gerais */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #ffffff; /* Fundo branco */
+    color: #111; /* Texto bem escuro */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Menu Hamburguer */
+.menu-hamburguer {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+}
+
+.menu {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    display: none;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    padding: 12px;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #111;
+    font-weight: bold;
+    display: block;
+    transition: background 0.3s;
+}
+
+.menu li a:hover {
+    background-color: #f5f5f5;
+}
+
+/* Foto do Cliente */
+.foto-cliente {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.foto-cliente img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #111;
+}
+
+/* Container de Serviços */
+.container {
+    width: 90%;
+    max-width: 600px;
+    margin: 30px auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilo dos Serviços */
+.servico {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    transition: transform 0.2s;
+}
+
+.servico:hover {
+    transform: scale(1.02);
+    background-color: #fafafa;
+}
+
+h2, h3 {
+    color: #111;
+}
+
+p {
+    color: #333;
+    font-size: 16px;
+}
+
+/* Botões padrões */
+button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #333;
+}
+
+/* Botões dos horários */
+.botoes-horarios {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.horario {
+    background: #fff;
+    color: #000;
+    border: 2px solid #000;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.horario:hover {
+    background: #000;
+    color: #fff;
+}
+
+/* Quando horário é selecionado */
+.horario.selecionado {
+    background: #000;
+    color: #fff;
+    transform: translateY(2px);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Botão confirmar */
+.confirmar-button {
+    margin-top: 15px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #000;
+    border: 2px solid #000;
+    border-radius: 30px;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-weight: bold;
+    display: block; /* FAZ o botão virar um bloco inteiro */
+    margin-left: auto; /* CENTRALIZA */
+    margin-right: auto; /* CENTRALIZA */
+    width: 70%; /* largura opcional para deixar estilo Linktree */
+    max-width: 300px; /* não passar de 300px para não ficar gigante em tela grande */
+}
+.confirmar-button:hover {
+    background-color: #333;
+}

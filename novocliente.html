@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Novo Cliente</title>
+    <link rel="stylesheet" href="/css/novocliente.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>Cadastrar Novo Cliente</h1>
+
+        <form id="formCadastroCliente">
+            <label for="nomeCliente">Nome:</label>
+            <input type="text" id="nomeCliente" required><br>
+
+            <label for="cpfCliente">CPF (11 dígitos):</label>
+            <input type="text" id="cpfCliente" pattern="\d{11}" required title="CPF deve conter 11 dígitos"><br>
+
+            <label for="celularCliente">Celular (com DDD):</label>
+            <input type="text" id="celularCliente" pattern="\(\d{2}\)\s\d{5}-\d{4}" required title="Celular deve estar no formato (XX) XXXXX-XXXX"><br>
+
+            <label for="senhaCliente">Senha:</label>
+            <input type="password" id="senhaCliente" required><br>
+
+            <button type="submit">Cadastrar</button>
+            <button type="button" id="cancelarCadastro">Cancelar</button>
+        </form>
+
+   
+    </div>
+
+    <script src="/js/novocliente.js"></script>
+</body>
+</html>

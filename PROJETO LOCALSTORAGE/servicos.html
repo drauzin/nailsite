@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços - Nail Designer</title>
+    <link rel="stylesheet" href="/css/servicos.css">
+</head>
+<body>
+
+    <!-- Menu Hamburguer -->
+    <div class="menu-hamburguer">
+        <button id="menu-icon">☰</button>
+        <div id="menu" class="menu" style="display: none;">
+            <ul>
+                <li><a href="agendamento.html">Meus Agendamentos</a></li>
+                <li><a href="servicos.html">Serviços</a></li>
+                <li><label for="inputFoto" class="alterar-foto">Alterar Foto</label></li> <!-- Novo item -->
+                <li><a href="index.html" id="logout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Foto do cliente -->
+    <div class="foto-cliente">
+        <img id="fotoPerfil" src="images/default-avatar.png" alt="Foto do Cliente">
+        <h2 id="nome-usuario">Nome do Usuário</h2>
+    </div>
+    <input type="file" id="inputFoto" accept="image/*" style="display: none;">
+    <script>
+        // Recupera o cliente logado do localStorage
+        const clienteLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
+        if (clienteLogado && clienteLogado.nome) {
+            document.getElementById("nome-usuario").textContent = clienteLogado.nome;
+        } else {
+            document.getElementById("nome-usuario").textContent = "Usuário Desconhecido";
+        }
+    </script>
+
+    <!-- Conteúdo principal -->
+    <div class="container">
+        <h2>Serviços Disponíveis</h2>
+        <div id="container-servicos"></div>
+    </div>
+
+    <script src="/js/menu.js"></script>
+    <script src="/js/servicos.js"></script>
+</body>
+</html>

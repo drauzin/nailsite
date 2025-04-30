@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Clientes</title>
+    <link rel="stylesheet" href="css/listaclientes.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Lista de Clientes</h1>
+
+    <table id="clientesTable">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Celular</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dados inseridos aqui via JS -->
+        </tbody>
+    </table>
+
+    <!-- Modal -->
+    <div id="modalCliente" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span id="fecharModal" class="close">&times;</span>
+            <h2>Perfil do Cliente</h2>
+            <div id="perfilCliente"></div>
+            <button id="salvarAlteracoes">Salvar Alterações</button>
+        </div>
+    </div>
+
+    <p><a href="painel.html">Voltar ao painel</a></p>
+</div>
+
+<script>
+    function carregarClientes() {
+        fetch('http://localhost:3000/api/clientes')
+            .then(response => response.json())
+            .then(clientes => {
+                const tabela = document.querySelector('#clientesTable tbody');
+                tabela.innerHTML = '';
+
+                clientes.forEach(cliente => {
+                    const tr = document.createElement('tr');
+
+                    tr.innerHTML = `
+                        <td>${cliente.nome}</td>
+                        <td>${cliente.cpf}</td>
+                        <td>${cliente.numero_celular || ''}</td>
+                        <td><button onclick='abrirModal(${JSON.stringify(cliente)})'>Editar</button></td>
+                    `;
+
+                    tabela.appendChild(tr);
+                });
+            })
+            .catch(error => {
+                console.error('Erro ao carregar os clientes:', error);
+            });
+    }
+
+    function abrirModal(cliente) {
+        document.getElementById('modalCliente').style.display = 'block';
+        document.getElementById('perfilCliente').innerHTML = `
+            <p><strong>Nome:</strong> ${cliente.nome}</p>
+            <p><strong>CPF:</strong> ${cliente.cpf}</p>
+            <p><strong>Celular:</strong> <input type="text" id="celularInput" value="${cliente.numero_celular || ''}" /></p>
+        `;
+    }
+
+    document.getElementById('fecharModal').onclick = () => {
+        document.getElementById('modalCliente').style.display = 'none';
+    };
+
+    window.onload = carregarClientes;
+</script>
+
+</body>
+</html>

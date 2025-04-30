@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/horarios.css">
+    <title>Gerenciar Horários</title>
+</head>
+<body>
+    <h1>Adicionar Horários Disponíveis</h1>
+
+    <form id="form-horario">
+        <input type="date" id="data" required>
+        <input type="time" id="hora" required>
+        <button type="submit">Adicionar Horário</button>
+    </form>
+
+    <h2>Horários Cadastrados</h2>
+    <ul id="lista-horarios"></ul>
+
+    <p><a href="painel.html">Voltar ao painel</a></p>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("form-horario");
+            const lista = document.getElementById("lista-horarios");
+
+            function carregarHorarios() {
+                const horarios = JSON.parse(localStorage.getItem("horariosDisponiveis")) || [];
+                lista.innerHTML = "";
+                horarios.forEach((h, index) => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `${h.data} às ${h.hora} <button onclick="removerHorario(${index})">Remover</button>`;
+                    lista.appendChild(li);
+                });
+            }
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const data = document.getElementById("data").value;
+                const hora = document.getElementById("hora").value;
+
+                if (data && hora) {
+                    const novoHorario = { data, hora };
+                    const horarios = JSON.parse(localStorage.getItem("horariosDisponiveis")) || [];
+                    horarios.push(novoHorario);
+                    localStorage.setItem("horariosDisponiveis", JSON.stringify(horarios));
+                    form.reset();
+                    carregarHorarios();
+                }
+            });
+
+            window.removerHorario = (index) => {
+                const horarios = JSON.parse(localStorage.getItem("horariosDisponiveis")) || [];
+                horarios.splice(index, 1);
+                localStorage.setItem("horariosDisponiveis", JSON.stringify(horarios));
+                carregarHorarios();
+            }
+
+            carregarHorarios();
+        });
+    </script>
+</body>
+</html>

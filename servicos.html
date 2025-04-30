@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Serviços – Nail Designer</title>
+  <link rel="stylesheet" href="/css/servicos.css">
+</head>
+<body>
+
+  <!-- Menu Hamburguer -->
+  <div class="menu-hamburguer">
+    <button id="menu-icon">☰</button>
+    <div id="menu" class="menu" style="display: none;">
+      <ul>
+        <li><a href="agendamento.html">Meus Agendamentos</a></li>
+        <li><a href="servicos.html">Serviços</a></li>
+        <li><label for="inputFoto" class="alterar-foto">Alterar Foto</label></li>
+        <li><a href="index.html" id="logout">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Foto do cliente -->
+  <div class="foto-cliente">
+    <img id="fotoPerfil" src="images/default-avatar.png" alt="Foto do Cliente">
+    <h2 id="nome-usuario">Nome do Usuário</h2>
+  </div>
+  <input type="file" id="inputFoto" accept="image/*" style="display: none;">
+
+  <!-- Conteúdo principal -->
+  <div class="container">
+    <h2>Serviços Disponíveis</h2>
+  
+    <div class="servico" data-servico="Manicure">
+      <h3>Manicure</h3>
+      <button class="btn-agendar" data-id="manicure">Agendar</button>
+      <div class="horarios" id="horarios-manicure" style="display: none;"></div>
+    </div>
+  
+    <div class="servico" data-servico="Pedicure">
+      <h3>Pedicure</h3>
+      <button class="btn-agendar" data-id="pedicure">Agendar</button>
+      <div class="horarios" id="horarios-pedicure" style="display: none;"></div>
+    </div>
+  
+    <div class="servico" data-servico="Alongamento de Unhas">
+      <h3>Alongamento de Unhas</h3>
+      <button class="btn-agendar" data-id="alongamento">Agendar</button>
+      <div class="horarios" id="horarios-alongamento" style="display: none;"></div>
+    </div>
+  </div>
+  
+
+  <script defer src="js/menu.js"></script>
+  <script defer src="/js/servicos.js"></script>
+</body>
+</html>
+
+

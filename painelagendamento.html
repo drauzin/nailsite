@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Agendamentos</title>
+  <link rel="stylesheet" href="/css/painelagendamento.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Horários</h1>
+    <div id="listaAgendamentos" class="lista-agendamentos"></div>
+    <button onclick="window.location.href='painel.html'" class="btn voltar">Voltar</button>
+
+  </div>
+
+
+
+  <!-- Modal para alterar o horário -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <h2>Digite o novo horário</h2>
+      <label for="modalData">Data:</label>
+      <input type="date" id="modalData" />
+
+      <label for="modalHora">Hora:</label>
+      <input type="time" id="modalHora" />
+
+      <div class="modal-buttons">
+        <button class="close-modal" onclick="fecharModal()">X</button>
+        <button class="btn alterar" id="btnSalvarAlteracao">Salvar</button>
+        
+      </div>
+    </div>
+  </div>
+
+  
+
+  <script src="/js/painelagendamento.js"></script>
+</body>
+</html>

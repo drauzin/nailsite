@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Agendamentos</title>
+    <link rel="stylesheet" href="/css//painelagendamento.css">
+</head>
+<body>
+
+    <h1>Painel de Agendamentos</h1>
+
+    <div id="lista-agendamentos">
+        <!-- Lista de clientes com seus agendamentos -->
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const listaContainer = document.getElementById("lista-agendamentos");
+            let agendamentosGerais = "";
+
+            // Obtém a lista de usuários armazenados no localStorage
+            const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+            // Para cada usuário, verifica se há agendamentos armazenados
+            usuarios.forEach(usuario => {
+                const chave = `agendamentos_${usuario.cpf}`; // Chave com base no CPF do cliente
+                const agendamentos = JSON.parse(localStorage.getItem(chave)) || [];
+
+                if (agendamentos.length > 0) {
+                    // Cria um link para cada cliente com seu nome
+                    agendamentosGerais += `
+                        <a href="#" class="cliente" onclick="mostrarAgendamentos('${usuario.cpf}')">
+                            ${usuario.nome} (CPF: ${usuario.cpf})
+                        </a>
+                    `;
+                }
+            });
+
+            // Exibe os clientes ou uma mensagem caso não haja clientes com agendamentos
+            listaContainer.innerHTML = agendamentosGerais || "<p class='nenhum-agendamento'>Nenhum agendamento encontrado.</p>";
+        });
+
+        function mostrarAgendamentos(cpf) {
+            const chave = `agendamentos_${cpf}`;
+            const agendamentos = JSON.parse(localStorage.getItem(chave)) || [];
+
+            // Exibe os agendamentos do cliente
+            let agendamentosDetalhados = "";
+            agendamentos.forEach(a => {
+                agendamentosDetalhados += `
+                    <li>
+                        <strong>Serviço:</strong> ${a.servico} - 
+                        <strong>Horário:</strong> ${a.horario} - 
+                        <strong>Data:</strong> ${a.data}
+                        <br>
+                        <a href="#" class="btn" onclick="editarAgendamento('${cpf}', '${a.horario}')">Alterar Horário</a>
+                        <a href="#" class="btn" onclick="cancelarAgendamento('${cpf}', '${a.horario}')">Cancelar</a>
+                    </li>
+                `;
+            });
+
+            // Atualiza a lista de agendamentos exibidos
+            const listaAgendamentos = document.createElement("ul");
+            listaAgendamentos.innerHTML = agendamentosDetalhados;
+
+            const container = document.getElementById("lista-agendamentos");
+            container.innerHTML = `<h2>Agendamentos de ${cpf}</h2>`;
+            container.appendChild(listaAgendamentos);
+        }
+
+        function editarAgendamento(cpf, horario) {
+            alert(`Alterando agendamento de ${cpf} no horário ${horario}`);
+            // Lógica para editar o agendamento (modificar o horário no localStorage)
+        }
+
+        function cancelarAgendamento(cpf, horario) {
+            const chave = `agendamentos_${cpf}`;
+            const agendamentos = JSON.parse(localStorage.getItem(chave)) || [];
+            const index = agendamentos.findIndex(a => a.horario === horario);
+
+            if (index !== -1) {
+                agendamentos.splice(index, 1); // Remove o agendamento
+                localStorage.setItem(chave, JSON.stringify(agendamentos));
+                alert(`Agendamento de ${cpf} no horário ${horario} foi cancelado.`);
+                mostrarAgendamentos(cpf); // Atualiza a lista
+            }
+        }
+    </script>
+<p><a href="painel.html">Voltar</a></p>
+</body>
+</html>

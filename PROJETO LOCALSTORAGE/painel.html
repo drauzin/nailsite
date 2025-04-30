@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo</title>
+    <link rel="stylesheet" href="/css/painel.css">
+</head>
+<body>
+
+    <!-- Título principal -->
+    <h1 style="text-align: center; margin-top: 20px;">Painel de Administração</h1>
+
+    <div class="foto-cliente" id="foto-admin">
+        <img id="admin-photo" src="/images/default-avatar.png" alt="Foto do Admin" width="150" height="150">
+        <h3 id="nome-admin">Admin</h3> <!-- Nome do Admin Aqui -->
+    </div>
+
+    <!-- Botão para alterar foto -->
+    <div style="text-align: center; margin-top: 20px;">
+        <button onclick="alterarFoto()">Alterar Foto</button>
+        <input type="file" id="input-foto" style="display: none;" accept="image/*" onchange="previewFoto(event)">
+    </div>
+
+    <div class="button-container" style="margin-top: 20px;">
+        <button onclick="window.location.href='painelagendamento.html'">Consultar Agenda</button>
+        <button onclick="window.location.href='novocliente.html'">Cadastrar Cliente</button>
+        <button onclick="window.location.href='cadastrarcupom.html'">Cadastrar Cupom</button>
+        <button onclick="window.location.href='listaclientes.html'">Lista de Clientes</button>
+        <button onclick="window.location.href='horarios.html'">Liberar horários</button>
+        <button onclick="logout()">Logout</button> <!-- Botão de Logout -->
+    </div>
+
+    <script src="/js/painel.js"></script>
+
+    <script>
+        // Função para sair da sessão
+        function logout() {
+            localStorage.removeItem('usuarioLogado'); // Remove o usuário logado
+            window.location.href = 'index.html'; // Redireciona para a página de login
+        }
+
+        // Função para abrir a galeria e alterar a foto
+        function alterarFoto() {
+            document.getElementById('input-foto').click(); // Abre o seletor de arquivos
+        }
+
+        // Função para mostrar a pré-visualização da foto escolhida
+        function previewFoto(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                // Exibe a imagem escolhida no local da foto do admin
+                document.getElementById('admin-photo').src = e.target.result;
+
+                // Salva a imagem no localStorage
+                localStorage.setItem('fotoAdmin', e.target.result);
+            }
+
+            reader.readAsDataURL(file); // Lê o arquivo como URL
+        }
+
+        // Carregar a foto do admin ao carregar a página
+        window.onload = function() {
+            const fotoSalva = localStorage.getItem('fotoAdmin');
+            if (fotoSalva) {
+                // Se houver uma foto salva no localStorage, carrega a foto
+                document.getElementById('admin-photo').src = fotoSalva;
+            }
+        }
+    </script>
+
+</body>
+</html>

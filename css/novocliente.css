@@ -1,0 +1,124 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    background-color: #fff;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start; /* Alinha tudo no centro */
+    min-height: 100vh; /* Garante que o corpo ocupe toda a altura da tela */
+}
+
+/* Container do formulário */
+.container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* Sombrinha para destacar o formulário */
+    text-align: center;
+    justify-content: flex-start;
+}
+
+/* Título */
+h1 {
+    margin-bottom: 20px;
+    color: #000;
+    font-size: 28px; /* Tamanho ajustado do título */
+    text-align: center; /* Centraliza o título */
+}
+
+/* Estilo dos inputs */
+input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #000;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s;
+}
+
+/* Estilo do input em foco */
+input:focus {
+    border-color: #f7343e; /* Cor de destaque */
+    outline: none;
+    background-color: #fff;
+}
+
+/* Botão */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    background-color: #f7343e; /* Cor de fundo do botão */
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Efeito de hover no botão */
+button:hover {
+    background-color: #e02f2b;
+    transform: scale(1.05);
+}
+
+/* Botão "voltar" */
+button.voltar {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+}
+
+/* Link de cadastro */
+p {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #555;
+}
+
+p a {
+    color: #f7343e;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+        width: 90%;
+        justify-content: flex-start;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    input {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 12px;
+    }
+}

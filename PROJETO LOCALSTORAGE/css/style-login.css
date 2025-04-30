@@ -1,0 +1,121 @@
+body {
+  background-color: #f5f5f5;
+  color: #333;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 40px 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+h1 {
+  font-family: 'Poppins', sans-serif; /* Aplicando a fonte Poppins */
+  font-size: 25px; /* Tamanho maior do título */
+  color: #111;
+  margin-bottom: 20px;
+  font-weight: 600; /* Peso mais forte para o título */
+  text-transform: uppercase; /* Título em maiúsculas */
+  letter-spacing: 2px; /* Um pouco de espaçamento entre as letras para um visual mais limpo */
+  text-align: center;
+}
+
+
+input[type="text"], input[type="password"] {
+  width: 300px;
+  max-width: 400px;
+  padding: 15px;
+  margin: 10px auto;
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  color: #333;
+  font-size: 16px;
+  display: block;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+  border-color: #111;
+  outline: none;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Espaço entre os botões */
+  margin-top: 20px;
+}
+
+.button-group button {
+  width: 45%; /* Tamanho dos botões dentro do grupo */
+  padding: 12px;
+  background-color: #111;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-group button.secondary {
+  background-color: #f1f1f1;
+  color: #111;
+  border: 1px solid #ddd;
+}
+
+.button-group button:hover {
+  background-color: #444;
+}
+
+.button-group button.secondary:hover {
+  background-color: #e1e1e1;
+}
+
+button:active {
+  background-color: #333;
+}
+
+.error-message {
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.forgot-password {
+  color: #007BFF;
+  font-size: 14px;
+  text-decoration: none;
+  margin-top: 10px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.signup-link {
+  color: #007BFF;
+  font-size: 14px;
+  text-decoration: none;
+  margin-top: 20px;
+  display: block;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
