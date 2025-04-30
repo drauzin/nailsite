@@ -6,17 +6,27 @@ const cors = require('cors');
 const mysql = require('mysql2');
 require('dotenv').config();  // Carregar variáveis do .env
 const app = express();
-const PORT = 3000;
 
-// Detectar se estamos no ambiente de produção ou desenvolvimento
-const isProd = process.env.NODE_ENV === 'production';
+const port = process.env.PORT || 3000;
 
-// Configuração do MySQL usando a variável de ambiente
-const db = mysql.createConnection(isProd ? process.env.DATABASE_URL : process.env.DEV_DATABASE_URL);
-
+app.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}`);
+});
 
 
-// Conectar ao banco
+// Configuração do banco de dados
+const db = mysql.createConnection({
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
+  });
+  
+  
+
+
+// Conectar ao banco de dados
 db.connect(err => {
     if (err) {
         console.error('Erro de conexão no MySQL:', err);
@@ -157,10 +167,6 @@ app.get('/agendamentos-com-clientes', (req, res) => {
     });
 });
 
-// Iniciar o servidor
-app.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}`);
-});
 
 
 // PUT /api/alterarHorario/:id
@@ -222,4 +228,9 @@ app.put('/agendamentos/:id/alterar-hora', (req, res) => {
       }
     });
   });
+  
+  app.get('/', (req, res) => {
+    res.send('API do Microsaas está rodando com sucesso!');
+  });
+
   
