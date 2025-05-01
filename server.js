@@ -282,14 +282,32 @@ app.put('/agendamentos/:id/alterar-hora', (req, res) => {
   });
 
   
-  app.get('/admin/:id', async (req, res) => {
-    const { id } = req.params;
-    try {
-      const [rows] = await db.query('SELECT nome, foto_url FROM administradores WHERE id = ?', [id]);
-      if (rows.length === 0) return res.status(404).json({ error: 'Admin não encontrado' });
-      res.json(rows[0]);
-    } catch (error) {
-      res.status(500).json({ error: 'Erro ao buscar admin' });
-    }
+  
+  
+  app.post('/login', (req, res) => {
+    const { cpf, senha } = req.body;
+  
+    db.query('SELECT id, nome, cpf, senha, tipo FROM usuarios WHERE cpf = ?', [cpf], (err, results) => {
+      if (err) {
+        console.error('Erro no login:', err);
+        return res.status(500).json({ erro: 'Erro interno' });
+      }
+  
+      if (results.length === 0) {
+        return res.status(401).json({ erro: 'Usuário não encontrado' });
+      }
+  
+      const usuario = results[0];
+  
+      if (usuario.senha !== senha) {
+        return res.status(401).json({ erro: 'Senha incorreta' });
+      }
+  
+      res.json({
+        id: usuario.id,
+        nome: usuario.nome,
+        tipo: usuario.tipo
+      });
+    });
   });
   
