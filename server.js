@@ -311,3 +311,40 @@ app.put('/agendamentos/:id/alterar-hora', (req, res) => {
     });
   });
   
+  // Buscar admin por ID
+app.get('/admin/:id', (req, res) => {
+    const { id } = req.params;
+  
+    db.query('SELECT nome, foto FROM usuarios WHERE id = ? AND tipo = "admin"', [id], (err, results) => {
+      if (err) {
+        return res.status(500).json({ erro: 'Erro ao buscar admin' });
+      }
+  
+      if (results.length === 0) {
+        return res.status(404).json({ erro: 'Admin não encontrado' });
+      }
+  
+      const admin = results[0];
+      res.json({
+        nome: admin.nome,
+        foto_url: admin.foto || null
+      });
+    });
+  });
+  
+  // Buscar cliente por ID
+app.get('/cliente/:id', (req, res) => {
+    const { id } = req.params;
+    db.query('SELECT nome, foto AS foto_url FROM usuarios WHERE id = ? AND tipo = "cliente"', [id], (err, results) => {
+        if (err) {
+            console.error('Erro ao buscar cliente:', err);
+            return res.status(500).json({ erro: 'Erro interno' });
+        }
+
+        if (results.length === 0) {
+            return res.status(404).json({ erro: 'Cliente não encontrado' });
+        }
+
+        res.json(results[0]);
+    });
+});

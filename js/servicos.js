@@ -73,3 +73,22 @@ async function agendar(horarioId) {
   }
 }
 
+
+document.addEventListener('DOMContentLoaded', function () {
+    const clienteId = sessionStorage.getItem('clienteId');
+    if (!clienteId) {
+      window.location.href = 'index.html';
+      return;
+    }
+  
+    fetch(`https://nailsite.onrender.com/cliente/${clienteId}`)
+      .then(res => res.json())
+      .then(cliente => {
+        document.getElementById('nome-usuario').innerText = cliente.nome;
+        document.getElementById('fotoPerfil').src = cliente.foto_url || 'images/default-avatar.png';
+      })
+      .catch(err => {
+        console.error('Erro ao buscar cliente:', err);
+      });
+  });
+  
