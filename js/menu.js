@@ -1,7 +1,7 @@
 // js/menu.js
 console.log('menu.js loaded');
 
-var API_URL = 'http://localhost:3000';
+var API_URL = 'https://nailsite.onrender.com';
 var clienteLogado = JSON.parse(localStorage.getItem('usuarioLogado') || 'null');
 
 // 1) Logout

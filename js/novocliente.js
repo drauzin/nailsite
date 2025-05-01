@@ -27,7 +27,7 @@ document.getElementById('formCadastroCliente').addEventListener('submit', functi
     }
 
     // Enviar dados para o servidor via fetch
-    fetch('http://localhost:3000/usuario/cadastrar', {
+    fetch('https://nailsite.onrender.com/usuario/cadastrar', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

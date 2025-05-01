@@ -10,7 +10,7 @@ document.querySelector('#cadastroForm').addEventListener('submit', async functio
   formData.append('cpf_cliente', cpf);
   formData.append('foto_url', foto);
 
-  const response = await fetch('http://localhost:3000/cliente', {
+  const response = await fetch('https://nailsite.onrender.com/cliente', {
     method: 'POST',
     body: formData
   });

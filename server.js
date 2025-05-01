@@ -6,6 +6,10 @@ const cors = require('cors');
 const mysql = require('mysql2');
 require('dotenv').config();  // Carregar variáveis do .env
 const app = express();
+const path = require('path');
+
+// Serve arquivos estáticos diretamente da raiz do projeto
+app.use(express.static(path.join(__dirname)));
 
 const port = process.env.PORT || 3000;
 
@@ -42,9 +46,14 @@ db.connect(err => {
 });
 
 // Middlewares
-app.use(cors());
+// Permitir todas as origens (no caso de desenvolvimento, você pode especificar um domínio)
+app.use(cors({
+    origin: 'http://127.0.0.1:5500',  // Permite requisições somente do seu frontend local
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Os métodos permitidos
+    allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
+  }));
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname)));
 
 // Rotas
 

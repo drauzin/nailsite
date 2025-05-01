@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("form-horario");
     const lista = document.getElementById("lista-horarios");
 
-    const API_URL = "http://localhost:3000/horarios";
+    const API_URL = "https://nailsite.onrender.com/horarios";
 
     // Função para carregar horários do servidor
     async function carregarHorarios() {

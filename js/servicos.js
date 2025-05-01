@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
               // Carregar os horários disponíveis (esses horários são os mesmos para todos os serviços)
               try {
-                  const response = await fetch("http://localhost:3000/horarios");
+                  const response = await fetch("https://nailsite.onrender.com/horarios");
                   const horarios = await response.json();
 
                   horariosDiv.innerHTML = '';  // Limpar a lista de horários antes de preencher
@@ -52,7 +52,7 @@ async function agendar(horarioId) {
   }
 
   try {
-      const response = await fetch("http://localhost:3000/agendar", {
+      const response = await fetch("https://nailsite.onrender.com/agendar", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

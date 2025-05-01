@@ -1,6 +1,6 @@
 // Atualizar a lista de agendamentos
 function carregarAgendamentos() {
-    fetch('http://localhost:3000/agendamentos-com-clientes')
+    fetch('https://nailsite.onrender.com/agendamentos-com-clientes')
       .then(response => response.json())
       .then(agendamentos => {
         console.log("Resposta do servidor:", agendamentos);
@@ -68,7 +68,7 @@ function abrirModal(agendamentoId, dataAtual, horaAtual) {
 
       console.log("Enviando para o servidor:", novaData, novaHora);
 
-      fetch(`http://localhost:3000/agendamentos/${agendamentoSelecionadoId}/alterar-hora`, {
+      fetch(`https://nailsite.onrender.com/agendamentos/${agendamentoSelecionadoId}/alterar-hora`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ novaData, novaHora })
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Log para verificar a chamada do fetch
             console.log(`Enviando requisição para atualizar agendamento ID: ${agendamentoSelecionadoId}`);
 
-            fetch(`http://localhost:3000/agendamentos/${agendamentoSelecionadoId}/alterar-hora`, {
+            fetch(`https://nailsite.onrender.com/agendamentos/${agendamentoSelecionadoId}/alterar-hora`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ novaData, novaHora })
@@ -174,7 +174,7 @@ function adicionarEventosBotoes() {
       botao.addEventListener('click', function () {
           const id = this.dataset.id;
           if (confirm('Deseja cancelar este agendamento?')) {
-              fetch(`http://localhost:3000/agendamentos/${id}`, {
+              fetch(`hhttps://nailsite.onrender.com/agendamentos/${id}`, {
                   method: 'DELETE'
               })
               .then(res => res.json())

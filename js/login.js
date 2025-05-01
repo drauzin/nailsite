@@ -4,7 +4,7 @@ document.querySelector('#loginForm').addEventListener('submit', async function(e
     const cpf = document.querySelector('#cpf').value;
     const senha = document.querySelector('#senha').value;
   
-    const response = await fetch('http://localhost:3000/usuario/' + cpf);
+    const response = await fetch('https://nailsite.onrender.com/usuario/' + cpf);
     const usuario = await response.json();
   
     if (usuario && usuario.senha === senha) {
