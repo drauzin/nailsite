@@ -174,7 +174,7 @@ function adicionarEventosBotoes() {
       botao.addEventListener('click', function () {
           const id = this.dataset.id;
           if (confirm('Deseja cancelar este agendamento?')) {
-              fetch(`hhttps://nailsite.onrender.com/agendamentos/${id}`, {
+              fetch(`https://nailsite.onrender.com/agendamentos/${id}`, {
                   method: 'DELETE'
               })
               .then(res => res.json())
