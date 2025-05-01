@@ -7,6 +7,8 @@ const mysql = require('mysql2');
 require('dotenv').config();  // Carregar variáveis do .env
 const app = express();
 const path = require('path');
+const multer = require('multer');
+
 
 // Serve arquivos estáticos diretamente da raiz do projeto
 app.use(express.static(path.join(__dirname)));
@@ -45,6 +47,35 @@ db.connect(err => {
     }
 });
 
+
+// Configuração do multer
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'images/');  // Pasta onde as imagens serão salvas
+    },
+    filename: function (req, file, cb) {
+      const cpf = req.body.cpf; // Nome do arquivo com base no CPF
+      const ext = path.extname(file.originalname);
+      cb(null, `${cpf}${ext}`);
+    }
+  });
+  
+  const upload = multer({ storage: storage });
+
+  app.post('/usuario/upload-foto', upload.single('foto'), (req, res) => {
+    const cpf = req.body.cpf;
+    const caminho = `images/${req.file.filename}`;
+  
+    db.query('UPDATE usuarios SET foto = ? WHERE cpf = ?', [caminho, cpf], (err, result) => {
+      if (err) {
+        return res.status(500).json({ error: 'Erro ao salvar a foto no banco de dados.' });
+      }
+      res.json({ message: 'Foto atualizada com sucesso!', caminho });
+    });
+  });
+
+  
+
 // Middlewares
 // Permitir todas as origens (no caso de desenvolvimento, você pode especificar um domínio)
 app.use(cors({
@@ -53,7 +84,8 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
   }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname)));
+app.use('/images', express.static(path.join(__dirname, 'images')));
+
 
 // Rotas
 

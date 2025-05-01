@@ -58,3 +58,24 @@
 </html>
 
 
+<script>
+  document.getElementById('inputFoto').addEventListener('change', function () {
+    const cpf = localStorage.getItem('cpf'); // ou outro modo que você use para manter o CPF do usuário logado
+    const formData = new FormData();
+    formData.append('foto', this.files[0]);
+    formData.append('cpf', cpf);
+  
+    fetch('https://nailsite.onrender.com/usuario/upload-foto', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.caminho) {
+        document.getElementById('fotoPerfil').src = data.caminho;
+      }
+    })
+    .catch(error => console.error('Erro ao enviar foto:', error));
+  });
+  </script>
+  
