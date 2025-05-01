@@ -1,32 +1,39 @@
+const API_URL = 'https://nailsite.onrender.com';
+const adminLogado = JSON.parse(localStorage.getItem('adminLogado'));
 
+window.onload = function () {
+  if (!adminLogado || !adminLogado.id) {
+    alert("Sessão expirada. Faça login novamente.");
+    window.location.href = "index.html";
+    return;
+  }
 
-    // Função para sair da conta do admin
-    const logoutButton = document.getElementById("logout");
-    if (logoutButton) {
-        logoutButton.addEventListener("click", function () {
-            localStorage.removeItem("usuarioLogado");
-            window.location.href = "index.html";  // Redireciona para a página de login
-        });
-    }
-    
-    // Ações dos botões do painel administrativo
-    document.getElementById("painelagendamento").addEventListener("click", function () {
-        window.location.href = "painelagendamento.html";  // Redireciona para a página de consulta de agendamentos
+  fetch(`${API_URL}/admin/${adminLogado.id}`)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("admin-photo").src = data.foto_url || "/images/default-avatar.png";
+      document.getElementById("nome-admin").textContent = data.nome;
+    })
+    .catch(() => {
+      document.getElementById("admin-photo").src = "/images/default-avatar.png";
+      document.getElementById("nome-admin").textContent = "Admin";
     });
+};
 
-    document.getElementById("novocliente").addEventListener("click", function () {
-        window.location.href = "novocliente.html";  // Redireciona para a página de cadastro de cliente
-    });
+document.getElementById("input-foto").addEventListener("change", async function (event) {
+  const file = event.target.files[0];
+  const formData = new FormData();
+  formData.append('foto', file);
+  formData.append('adminId', adminLogado.id);
 
-    document.getElementById("cadastrarcupom").addEventListener("click", function () {
-        window.location.href = "cadastrarcupom.html";  // Redireciona para a página de cadastro de cupons
+  try {
+    const res = await fetch(`${API_URL}/admin/upload-foto`, {
+      method: 'POST',
+      body: formData
     });
-
-    document.getElementById("listaclientes").addEventListener("click", function () {
-        window.location.href = "listaclientes.html";  // Redireciona para a página de lista de clientes
-    });
-
-    document.getElementById("horarios").addEventListener("click", function () {
-        window.location.href = "horarios.html";  // Redireciona para a página de liberação de horários
-    });
-;
+    const result = await res.json();
+    document.getElementById("admin-photo").src = result.foto_url;
+  } catch (err) {
+    alert("Erro ao enviar foto.");
+  }
+});

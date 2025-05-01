@@ -74,6 +74,7 @@ const storage = multer.diskStorage({
     });
   });
 
+
   
 
 // Middlewares
@@ -280,4 +281,15 @@ app.put('/agendamentos/:id/alterar-hora', (req, res) => {
     res.send('API do Microsaas está rodando com sucesso!');
   });
 
+  
+  app.get('/admin/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+      const [rows] = await db.query('SELECT nome, foto_url FROM administradores WHERE id = ?', [id]);
+      if (rows.length === 0) return res.status(404).json({ error: 'Admin não encontrado' });
+      res.json(rows[0]);
+    } catch (error) {
+      res.status(500).json({ error: 'Erro ao buscar admin' });
+    }
+  });
   
