@@ -45,30 +45,24 @@
             document.getElementById('input-foto').click(); // Abre o seletor de arquivos
         }
 
-        // Função para mostrar a pré-visualização da foto escolhida
-        function previewFoto(event) {
-            const file = event.target.files[0];
-            const reader = new FileReader();
-            
-            reader.onload = function(e) {
-                // Exibe a imagem escolhida no local da foto do admin
-                document.getElementById('admin-photo').src = e.target.result;
+        document.addEventListener('DOMContentLoaded', function () {
+  const adminId = sessionStorage.getItem('adminId');
+  if (!adminId) {
+    window.location.href = 'index.html'; // Redireciona se não estiver logado
+    return;
+  }
 
-                // Salva a imagem no localStorage
-                localStorage.setItem('fotoAdmin', e.target.result);
-            }
+  fetch(`https://nailsite.onrender.com/admin/${adminId}`)
+    .then(res => res.json())
+    .then(admin => {
+      document.getElementById('nome-admin').innerText = admin.nome;
+      document.getElementById('admin-photo').src = admin.foto_url || '/images/default-avatar.png';
+    })
+    .catch(err => {
+      console.error('Erro ao buscar admin:', err);
+    });
+});
 
-            reader.readAsDataURL(file); // Lê o arquivo como URL
-        }
-
-        // Carregar a foto do admin ao carregar a página
-        window.onload = function() {
-            const fotoSalva = localStorage.getItem('fotoAdmin');
-            if (fotoSalva) {
-                // Se houver uma foto salva no localStorage, carrega a foto
-                document.getElementById('admin-photo').src = fotoSalva;
-            }
-        }
     </script>
 
 </body>
