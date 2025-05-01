@@ -13,6 +13,12 @@ app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
 
+console.log('DB_HOST:', process.env.DB_HOST);
+console.log('DB_USER:', process.env.DB_USER);
+console.log('DB_PASSWORD:', process.env.DB_PASSWORD);
+console.log('DB_NAME:', process.env.DB_NAME);
+
+
 
 // Configuração do banco de dados
 const db = mysql.createConnection({
